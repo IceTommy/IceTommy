@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Interface</title>
+    <title>Portfolio :: Mario Rossi</title>
     <style>
         /* --- Import Font --- */
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
@@ -68,13 +68,13 @@
             overflow: hidden;
             border-right: .15em solid var(--text); /* Cursore */
             animation: 
-                typing 3.5s steps(30, end) forwards,
+                typing 3.5s steps(40, end) forwards,
                 blink-caret .75s step-end infinite;
         }
 
         /* --- Sezioni --- */
         .section {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             border-left: 3px solid var(--accent1);
             padding-left: 1rem;
         }
@@ -110,29 +110,22 @@
             padding-left: 0;
         }
 
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
         ul li::before {
             content: '[*] ';
             color: var(--accent2);
         }
 
-        /* --- Blocco Codice/Log --- */
-        .log-box {
-            background-color: #000;
-            border: 1px solid var(--accent1);
-            padding: 1rem;
-            font-size: 0.9rem;
-            height: 150px;
-            overflow-y: scroll;
-            white-space: pre-wrap;
-        }
-        
-        .log-box span {
+        .project-description {
             display: block;
+            margin-left: 20px;
+            color: #ccc;
+            font-style: italic;
+            font-size: 0.9rem;
         }
-        .log-box .success { color: var(--text); }
-        .log-box .warning { color: #ffA500; }
-        .log-box .error { color: #ff4136; }
-
 
         /* --- Footer --- */
         footer {
@@ -170,44 +163,58 @@
 
     <div class="container">
         <header>
-            <h1 class="typing">Tom's vault</h1>
+            <h1 class="typing">./Mario_Rossi/Portfolio</h1>
         </header>
 
         <main>
-            <section class="section" id="user-profile">
-                <h2>User Profile</h2>
+            <section class="section" id="about-me">
+                <h2>Chi Sono</h2>
+                <p>
+                    Sviluppatore software con una passione per l'automazione, il problem solving e la creazione di soluzioni efficienti. Benvenuto nel mio terminale personale.
+                </p>
+            </section>
+            
+            <section class="section" id="projects">
+                <h2>Progetti Personali</h2>
                 <ul>
-                    <li>User ID: <strong>root</strong></li>
-                    <li>Access Level: <strong>Administrator</strong></li>
-                    <li>IP Address: <strong>127.0.0.1</strong></li>
-                    <li>Status: <span style="color: var(--text);">ONLINE</span></li>
+                    <li>
+                        <strong>Project Overlord</strong> - <a href="#" target="_blank">[Repository]</a>
+                        <span class="project-description">Dashboard web per il monitoraggio di server personali, realizzata con Flask e Chart.js.</span>
+                    </li>
+                    <li>
+                        <strong>Auto-Trader Bot</strong> - <a href="#" target="_blank">[Repository]</a>
+                        <span class="project-description">Script Python che utilizza API di exchange per automatizzare strategie di trading di criptovalute.</span>
+                    </li>
+                    <li>
+                        <strong>Dotfiles Config</strong> - <a href="#" target="_blank">[Repository]</a>
+                        <span class="project-description">La mia configurazione personalizzata per Neovim, Zsh e altri strumenti da riga di comando.</span>
+                    </li>
                 </ul>
             </section>
 
-            <section class="section" id="system-logs">
-                <h2>Real-Time System Log</h2>
-                <div class="log-box">
-                    <span class="success">[2025-09-22 10:01:00] Initializing kernel... OK</span>
-                    <span class="success">[2025-09-22 10:01:01] Loading modules... OK</span>
-                    <span class="warning">[2025-09-22 10:01:02] WARN: Deprecated network driver found.</span>
-                    <span class="success">[2025-09-22 10:01:03] Mounting filesystems... OK</span>
-                    <span class="error">[2025-09-22 10:01:04] ERROR: Failed to connect to remote server 192.168.1.254</span>
-                    <span class="success">[2025-09-22 10:01:05] Authentication successful. Welcome, root.</span>
-                </div>
-            </section>
-
-            <section class="section" id="quick-links">
-                <h2>Quick Links</h2>
+            <section class="section" id="coding">
+                <h2>Coding</h2>
                 <ul>
-                    <li><a href="#" target="_blank">Access Network Drives</a></li>
-                    <li><a href="#" target="_blank">Run Diagnostics</a></li>
-                    <li><a href="#" target="_blank">Deploy Script</a></li>
+                    <li><strong>Linguaggi:</strong> Python, JavaScript (Node.js), Bash, SQL</li>
+                    <li><strong>Framework:</strong> Django, Flask, React.js, Express</li>
+                    <li><strong>DevOps & Tools:</strong> Docker, Git, Nginx, CI/CD (GitHub Actions)</li>
+                    <li><strong>Database:</strong> PostgreSQL, MongoDB, Redis</li>
                 </ul>
             </section>
+            
+            <section class="section" id="links">
+                <h2>Link Utili</h2>
+                <ul>
+                    <li><a href="https://github.com" target="_blank">GitHub</a></li>
+                    <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+                    <li><a href="mailto:esempio@email.com">Email</a></li>
+                </ul>
+            </section>
+
         </main>
 
         <footer>
-            <p>// session active: do not close this terminal //</p>
+            <p>&copy; 2025 Mario Rossi. All systems operational.</p>
         </footer>
     </div>
 
