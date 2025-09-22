@@ -3,57 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Mia Pagina di Esempio</title>
+    <title>System Interface</title>
     <style>
+        /* --- Import Font --- */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
+        /* --- Variabili Colori --- */
+        :root {
+            --background: #0d0208;
+            --text: #00ff41;
+            --accent1: #008f11;
+            --accent2: #ffffff;
+            --shadow: 0 0 5px var(--text), 0 0 10px var(--text);
+        }
+
+        /* --- Stile Base --- */
         body {
-            font-family: sans-serif;
-            line-height: 1.6;
-            margin: 20px;
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            margin: 0;
+            padding: 2rem;
+            overflow-x: hidden;
         }
-        header, footer {
-            background-color: #f2f2f2;
-            padding: 10px;
+
+        /* --- Effetto "Vecchio Monitor" --- */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(0deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 50%);
+            background-size: 100% 4px;
+            opacity: 0.2;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        /* --- Contenitore Principale --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid var(--accent1);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            background: rgba(0, 10, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
             text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: var(--shadow);
+            margin-bottom: 2rem;
         }
-        main {
-            padding: 20px;
+
+        /* --- Animazione di Scrittura --- */
+        .typing {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid var(--text); /* Cursore */
+            animation: 
+                typing 3.5s steps(30, end) forwards,
+                blink-caret .75s step-end infinite;
         }
-        h1 {
-            color: #333;
+
+        /* --- Sezioni --- */
+        .section {
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--accent1);
+            padding-left: 1rem;
         }
+
+        h2 {
+            color: var(--accent2);
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--accent1);
+            padding-bottom: 5px;
+        }
+        
+        h2::before {
+            content: '>> ';
+        }
+
+        /* --- Stile Link e Liste --- */
+        a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        a:hover {
+            background-color: var(--text);
+            color: var(--background);
+            box-shadow: var(--shadow);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li::before {
+            content: '[*] ';
+            color: var(--accent2);
+        }
+
+        /* --- Blocco Codice/Log --- */
+        .log-box {
+            background-color: #000;
+            border: 1px solid var(--accent1);
+            padding: 1rem;
+            font-size: 0.9rem;
+            height: 150px;
+            overflow-y: scroll;
+            white-space: pre-wrap;
+        }
+        
+        .log-box span {
+            display: block;
+        }
+        .log-box .success { color: var(--text); }
+        .log-box .warning { color: #ffA500; }
+        .log-box .error { color: #ff4136; }
+
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--accent1);
+        }
+
+        /* --- Keyframes per Animazioni --- */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--text); }
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+
+        /* --- Scrollbar Custom --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: var(--accent1); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text); }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Benvenuto nella Mia Pagina Web</h1>
-    </header>
+    <div class="container">
+        <header>
+            <h1 class="typing">System Access Granted</h1>
+        </header>
 
-    <main>
-        <h2>A Proposito di Questa Pagina</h2>
-        <p>Questa è una semplice pagina HTML creata come esempio. L'HTML (HyperText Markup Language) è il linguaggio standard per la creazione di pagine web.</p>
-        <p>Questa pagina include alcuni elementi HTML di base, come intestazioni, paragrafi, un elenco e un link.</p>
+        <main>
+            <section class="section" id="user-profile">
+                <h2>User Profile</h2>
+                <ul>
+                    <li>User ID: <strong>root</strong></li>
+                    <li>Access Level: <strong>Administrator</strong></li>
+                    <li>IP Address: <strong>127.0.0.1</strong></li>
+                    <li>Status: <span style="color: var(--text);">ONLINE</span></li>
+                </ul>
+            </section>
 
-        <h3>Caratteristiche Principali di HTML:</h3>
-        <ul>
-            <li><b>Struttura:</b> Fornisce la struttura di base per i contenuti di una pagina web.</li>
-            <li><b>Elementi:</b> Utilizza "tag" per definire diversi tipi di contenuto.</li>
-            <li><b>Collegamenti:</b> Permette di collegare diverse pagine tra loro tramite i link.</li>
-        </ul>
+            <section class="section" id="system-logs">
+                <h2>Real-Time System Log</h2>
+                <div class="log-box">
+                    <span class="success">[2025-09-22 10:01:00] Initializing kernel... OK</span>
+                    <span class="success">[2025-09-22 10:01:01] Loading modules... OK</span>
+                    <span class="warning">[2025-09-22 10:01:02] WARN: Deprecated network driver found.</span>
+                    <span class="success">[2025-09-22 10:01:03] Mounting filesystems... OK</span>
+                    <span class="error">[2025-09-22 10:01:04] ERROR: Failed to connect to remote server 192.168.1.254</span>
+                    <span class="success">[2025-09-22 10:01:05] Authentication successful. Welcome, root.</span>
+                </div>
+            </section>
 
-        <h2>Risorse Utili</h2>
-        <p>Se vuoi imparare di più sullo sviluppo web, ecco un ottimo punto di partenza:</p>
-        <p><a href="https://developer.mozilla.org/it/docs/Web/HTML" target="_blank">MDN Web Docs - HTML</a></p>
+            <section class="section" id="quick-links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#" target="_blank">Access Network Drives</a></li>
+                    <li><a href="#" target="_blank">Run Diagnostics</a></li>
+                    <li><a href="#" target="_blank">Deploy Script</a></li>
+                </ul>
+            </section>
+        </main>
 
-        <h2>Un'immagine di esempio</h2>
-        <p>Ecco come inserire un'immagine in una pagina:</p>
-        <img src="https://via.placeholder.com/400x200" alt="Immagine segnaposto">
-
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Il Mio Sito Web. Tutti i diritti riservati.</p>
-    </footer>
+        <footer>
+            <p>// session active: do not close this terminal //</p>
+        </footer>
+    </div>
 
 </body>
 </html>
