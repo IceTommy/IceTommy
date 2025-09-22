@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto :: Modalità Sentinella</title>
+    <style>
+        /* --- Stesso Stile della pagina principale --- */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+        :root { --background: #0d0208; --text: #00ff41; --accent1: #008f11; --accent2: #ffffff; --shadow: 0 0 5px var(--text), 0 0 10px var(--text); }
+        body { background-color: var(--background); color: var(--text); font-family: 'Fira Code', monospace; margin: 0; padding: 2rem; overflow-x: hidden; }
+        body::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(0deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 50%); background-size: 100% 4px; opacity: 0.2; pointer-events: none; animation: flicker 0.15s infinite; }
+        .container { max-width: 800px; margin: 0 auto; border: 1px solid var(--accent1); box-shadow: var(--shadow); padding: 1.5rem; background: rgba(0, 10, 0, 0.1); }
+        header h1 { font-size: 2.5rem; text-align: center; text-transform: uppercase; letter-spacing: 3px; text-shadow: var(--shadow); margin-bottom: 2rem; }
+        .typing { display: inline-block; white-space: nowrap; overflow: hidden; border-right: .15em solid var(--text); animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite; }
+        .section { margin-bottom: 2.5rem; border-left: 3px solid var(--accent1); padding-left: 1rem; }
+        h2 { color: var(--accent2); text-transform: uppercase; font-size: 1.2rem; letter-spacing: 2px; border-bottom: 1px solid var(--accent1); padding-bottom: 5px; }
+        h2::before { content: '>> '; }
+        a { color: var(--text); text-decoration: none; transition: all 0.2s ease-in-out; }
+        a:hover { background-color: var(--text); color: var(--background); box-shadow: var(--shadow); }
+        p { line-height: 1.6; }
+        footer { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--accent1); }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--text); } }
+        @keyframes flicker { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.4; } }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: var(--accent1); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text); }
+
+        /* NUOVI STILI per tabella e codice */
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { border: 1px solid var(--accent1); padding: 10px; text-align: left; }
+        th { background-color: rgba(0, 143, 17, 0.2); color: var(--accent2); }
+        pre { background-color: #000; border: 1px solid var(--accent1); padding: 1rem; font-size: 0.9rem; overflow-x: auto; white-space: pre-wrap; }
+        .schema-image { max-width: 100%; border: 1px solid var(--accent1); margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="typing">./Modalita_Sentinella</h1>
+            <a href="index.html">[ << Torna al Portfolio ]</a>
+        </header>
+
+        <main>
+            <section class="section" id="description">
+                <h2>Descrizione del Progetto</h2>
+                <p>
+                    Questo progetto mira a replicare una "modalità sentinella" per qualsiasi veicolo. Utilizzando un microcontrollore come Raspberry Pi e un sensore a ultrasuoni, il sistema è in grado di rilevare oggetti o persone che si avvicinano troppo all'auto. Quando viene rilevata una presenza, il sistema può attivare una serie di azioni, come accendere le luci, far partire una registrazione video o inviare una notifica allo smartphone del proprietario.
+                </p>
+            </section>
+            
+            <section class="section" id="materials">
+                <h2>Componenti Necessari</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Componente</th>
+                            <th>Quantità</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Raspberry Pi 4</td>
+                            <td>1</td>
+                            <td>Qualsiasi modello con GPIO va bene.</td>
+                        </tr>
+                        <tr>
+                            <td>Sensore a Ultrasuoni HC-SR04</td>
+                            <td>4</td>
+                            <td>Per coprire tutti i lati del veicolo.</td>
+                        </tr>
+                        <tr>
+                            <td>Power Bank</td>
+                            <td>1</td>
+                            <td>Con capacità di almeno 10,000mAh.</td>
+                        </tr>
+                         <tr>
+                            <td>Cavi Jumper</td>
+                            <td>Set</td>
+                            <td>Maschio-Femmina e Maschio-Maschio.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section" id="schema">
+                <h2>Schema del Progetto</h2>
+                <p>
+                    Di seguito è riportato lo schema elettrico per il collegamento di un singolo sensore a ultrasuoni al Raspberry Pi. Il processo va ripetuto per ogni sensore, utilizzando pin GPIO differenti.
+                </p>
+                <!-- Sostituisci "schema.png" con il percorso della tua immagine -->
+                <img src="https://via.placeholder.com/700x400.png?text=Schema+Elettrico+Qui" alt="Schema elettrico del progetto" class="schema-image">
+            </section>
+            
+            <section class="section" id="implementation">
+                <h2>Implementazione</h2>
+                <p>
+                    L'implementazione software è gestita da uno script Python. Per prima cosa, assicuriamoci di avere le librerie necessarie installate sul nostro Raspberry Pi. Apriamo il terminale e digitiamo:
+                </p>
+                <pre><code>sudo apt-get update
+sudo apt-get install python3-pip
+pip3 install RPi.GPIO</code></pre>
+                <p>
+                    Una volta installate le dipendenze, possiamo iniziare a scrivere il codice per leggere i dati dal sensore. Creiamo un file chiamato `sentry.py` e inseriamo il codice iniziale per la configurazione dei pin GPIO...
+                </p>
+                <!-- Continua con la tua spiegazione -->
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Thomas Mazzeo. All systems operational.</p>
+        </footer>
+    </div>
+</body>
+</html>
